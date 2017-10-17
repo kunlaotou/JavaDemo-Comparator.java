@@ -1,0 +1,16 @@
+public class Test1 {  
+  
+    public static void main(String[] args) {  
+        String str="刘德华_java程序员_布鲁明顿";  
+        char[] str1=str.toCharArray();  
+        StringBuilder sb=new StringBuilder();  
+        sb.append(str1);  
+        sb.delete(8, 11);  
+        sb.insert(8, "高级攻城狮");  
+        sb.replace(4, 8, "ios");  
+        sb.reverse();  
+        String s1=sb.toString().toLowerCase();  
+        System.out.println(s1);  
+    }  
+  
+}  
