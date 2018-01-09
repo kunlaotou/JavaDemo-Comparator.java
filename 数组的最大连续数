@@ -1,0 +1,14 @@
+public class Test {
+    public static int findMaxConsecutiveOnes(int[] nums) {
+        int  max = 0;
+        int MaxHere = 0;
+        for(int n : nums){
+            max = Math.max(max, MaxHere = n == 0 ? 0 : MaxHere + 1);
+        }
+        return max;
+    }
+    public static void main(String[] args) {
+        int[] a = new int[]{1,0,1,1};
+        System.out.println(Test.findMaxConsecutiveOnes(a));
+    }
+}
