@@ -8,6 +8,10 @@ import java.util.*;
  *              add方法在添加元素的时候，若超出了度列的长度会直接抛出异常：
  *              put方法，若向队尾添加元素的时候发现队列已经满了会发生阻塞一直等待空间，以加入元素。
  *               offer方法在添加元素时，如果发现队列已满无法添加的话，会直接返回false。
+ 
+                 http://www.importnew.com/6932.html(参考这里)
+                 
+                 注意: PriorityQueue出队的时候元素才是按照默认规则或者某种定义的规则有序的
  */
 public class Test {
     public static int thirdMax(int[] nums) {
