@@ -1,0 +1,42 @@
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @Author: Wenhua Tang
+ * @Description: 求HashMap中最大的值
+ * @Date:Created in 9:37 2018/1/9
+ * @Remarks:
+ */
+public class Count {
+
+    //统计数组中每个元素出现的次数(不用设置计数器Count就可以统计出一个map)
+    public static  Map<Integer,Integer> getMap(int[] nums){
+        Map<Integer,Integer> map  = new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            if(!map.containsKey(nums[i])){
+                map.put(nums[i], 1);
+            }else {
+                map.put(nums[i], map.get(nums[i]) + 1);
+            }
+
+        }
+        System.out.println(map);
+        return map;
+    }
+    private static int count(int[] nums){
+        Map<Integer,Integer> map = getMap(nums);
+        Map.Entry<Integer,Integer> majority = null;
+        for(Map.Entry<Integer,Integer> n : map.entrySet()){
+            if(majority == null || n.getKey() > majority.getKey() ){
+                majority = n;
+            }
+        }
+        return majority.getKey();
+    }
+
+    public static void main(String[] args) {
+        int[] a = new int[]{4,2,4,0,0,3,0,5,1,0};
+
+        System.out.println(Count.count(a));
+    }
+}
