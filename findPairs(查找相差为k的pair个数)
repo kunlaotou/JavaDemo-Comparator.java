@@ -1,0 +1,43 @@
+package Test;
+
+import java.util.*;
+
+/**
+ * @Author: Wenhua Tang
+ * @Description:
+ * @Date:Created in 9:54 2018/1/3
+ * @Remarks:
+ */
+public class Test {
+    public static int findPairs(int[] nums, int k) {
+
+        if(nums == null || k < 0 || nums.length == 0){
+            return 0;
+        }
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(int num : nums){
+            map.put(num, map.getOrDefault(num,0) + 1);
+        }
+        System.out.println(map);
+        int count = 0;
+        for(Map.Entry<Integer, Integer> m : map.entrySet()){
+            if(k == 0){
+                if(m.getValue() >= 2){
+                    count++;
+                }
+            }else{
+                if(map.containsKey(m.getKey() + k)){
+                        count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int[] a = new int[]{4,2,4,0,0,3,5,1,0};
+        System.out.println(Test.findPairs(a,1));
+    }
+}
