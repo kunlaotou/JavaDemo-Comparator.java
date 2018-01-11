@@ -8,7 +8,11 @@ import java.util.*;
  * @Date:Created in 9:54 2018/1/3
  * @Remarks:
  */
+ 
+ 
+
 public class Test {
+ //累积和数组
     private static double findMaxAverage(int[] nums, int k) {
         double max;
         double[] sums = new double[nums.length];
@@ -30,3 +34,21 @@ public class Test {
 
     }
 }
+
+
+
+//滑动窗口
+private static double findMaxAverage(int[] nums, int k) {
+        double sums = 0.0;
+
+        for(int i = 0; i < k; i++){
+            sums += nums[i];
+        }
+        double max = sums;
+        for(int i = k; i < nums.length; i++){
+            sums += nums[i] - nums[i - k];
+            max = Math.max(max,sums);
+        }
+        return max/k;
+    }
+
