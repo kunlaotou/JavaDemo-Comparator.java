@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 /**
@@ -9,20 +10,23 @@ import java.util.*;
 public class Test {
 
     public static int minCostClimbingStairs(int[] cost) {
-        int[] dp = new int[cost.length + 1];
-        dp[0] = 0;
-        dp[1] = 0;
-        for(int i = 2; i < dp.length; i++){
-            dp[i] = Math.min(dp[i - 1] + cost[i -1], dp[i - 2] + cost[i - 2]);
+        int [] mc = new int[cost.length + 1];
+        mc[0] = cost[0];
+        mc[1] = cost[1];
+
+        for(int i = 2; i <= cost.length; i++){
+            int costV = (i==cost.length)?0:cost[i];
+            mc[i] = Math.min(mc[i-1] + costV, mc[i-2] + costV);
         }
-        return dp[dp.length - 1];
+        return mc[cost.length];
     }
 
 
     public static void main(String[] args) {
-        int[] a =  new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
+        int[] a =  new int[]{0,0,0,1};
         Test test = new Test();
         System.out.println(test.minCostClimbingStairs(a));
 
     }
 }
+
