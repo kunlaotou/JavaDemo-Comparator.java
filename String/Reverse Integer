@@ -1,0 +1,13 @@
+public int reverse(int x) {
+        int res = 0;
+        while(x != 0){
+            int tail = x % 10;
+            int tempRes = res * 10 + tail;     //反转整数的关键步骤
+            if((tempRes - tail) / 10 != res){   //如果溢出了，和原来的数就不相等了（或者 remRes>Integer.MAX_VALUE || tempRes<Integer.MIN_VALUE）
+                return 0;
+            }
+            res = tempRes;
+            x/=10;
+        }
+        return res;
+    }
