@@ -1,0 +1,20 @@
+public String convert(String s, int nRows) {
+        StringBuffer[] sb = new StringBuffer[nRows];   //每一行都保存在一个sb里，最后把每个sb加起来
+        for(int i = 0; i < nRows; i++){
+            sb[i] = new StringBuffer();
+        }
+        int i = 0;
+        while(i < s.length()){
+            for(int idx = 0; idx < nRows && i < s.length(); idx++){           //这个循环控制垂直
+                sb[idx].append(s.charAt(i++));
+            }
+            for(int idx = nRows - 2; idx >= 1 && i < s.length(); idx--){      //这个循环控制斜向上
+                sb[idx].append(s.charAt(i++));
+            }
+        }
+        for(int x = 1; x < sb.length; x++){
+            sb[0].append(sb[x]);
+        }
+
+        return sb[0].toString();
+    }
