@@ -1,0 +1,9 @@
+public String intToRoman(int num) {
+
+        String[] I = new String[]{"","M","MM","MMM"};
+        String[] II = new String[]{"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+        String[] III = new String[]{"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+        String[] IV = new String[]{"","I","II","III","IV","V","VI","VII","VIII","IX"};
+
+        return I[num / 1000] + II[num%1000 / 100] + III[num%100 / 10] + IV[num%10];
+    }
