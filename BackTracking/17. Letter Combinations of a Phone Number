@@ -1,0 +1,23 @@
+public class Test {
+
+    public static final String[] map = new String[]{"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+    public List<String> letterCombinations(String digits) {
+
+        List<String> result = new ArrayList<>();
+        if(!digits.isEmpty()){
+            letterCombinations(result, "", 0, digits);
+        }
+        return  result;
+    }
+    private void letterCombinations(List<String> result, String curr, int offset, String digits){
+        if(offset == digits.length()){
+            result.add(curr);
+            return;
+        }
+        String letters = map[digits.charAt(offset) - '0'];
+        for(int i = 0; i < letters.length(); i++){
+            letterCombinations(result, curr + letters.charAt(i), offset + 1, digits);
+        }
+    }
+}
