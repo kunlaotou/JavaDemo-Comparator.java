@@ -1,0 +1,19 @@
+public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList();
+        if(candidates.length == 0){
+            return res;
+        }
+        BackStracking(res, new ArrayList(), candidates, target, 0);
+        return res;
+    }
+    public static void BackStracking(List<List<Integer>> res, List<Integer> tempList, int[] candidates, int remain, int start){
+        if(remain < 0){return;}
+        else if(remain == 0){res.add(new ArrayList<>(tempList));}
+        else {
+            for(int i = start; i < candidates.length; i++){
+                tempList.add(candidates[i]);
+                BackStracking(res, tempList, candidates,remain - candidates[i], i);//not i + 1 because we can reuse same elements
+                tempList.remove(tempList.size() - 1);
+            }
+        }
+    }
