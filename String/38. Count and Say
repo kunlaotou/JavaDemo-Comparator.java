@@ -1,0 +1,26 @@
+class Solution {
+    public String countAndSay(int n) {
+        if(n <= 0){
+            return "";
+        }
+        String nowStr = "1";
+        for(int i = 2; i <= n; i++){
+            nowStr = getSay(nowStr);
+        }
+        return nowStr;
+    }
+    private String getSay(String pre){
+        StringBuilder res = new StringBuilder();
+        int count = 0;
+        for(int i = 0; i < pre.length(); i++){
+            count++;
+            if(i + 1 < pre.length() && pre.charAt(i) != pre.charAt(i + 1)){
+                res.append(count).append(pre.charAt(i));
+                count = 0;
+            }else if(i + 1 == pre.length()){
+                res.append(count).append(pre.charAt(i));
+            }
+        }
+        return res.toString();
+    }
+}
