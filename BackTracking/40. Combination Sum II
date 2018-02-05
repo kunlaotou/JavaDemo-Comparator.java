@@ -1,0 +1,20 @@
+public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList();
+        if(candidates.length == 0){return res;}
+        Arrays.sort(candidates);
+        backtrack(res, new ArrayList(), candidates, target, 0);
+        return res;
+    }
+    private void backtrack(List<List<Integer>> res, List<Integer> tempList, int[] canditates, int remain, int start){
+        if (remain < 0) return; /** no solution */
+        else if (remain == 0) {
+            res.add(new ArrayList<>(tempList));
+            return;
+        }
+        for(int i = start; i < canditates.length; i++){
+            if(i > start && canditates[i] == canditates[i-1]) continue; /** skip duplicates */
+            tempList.add(canditates[i]);
+            backtrack(res, tempList, canditates, remain - canditates[i], i+1);        //一个元素只能选一次，所以进下次递归的时候，循环要后移一位
+            tempList.remove(tempList.size() - 1);                                            //这句话发生在递归的同一层上，意义上这条路走不通或者走完了，我把它舍弃了，重新再选一个（回溯的精髓）
+        }
+    }
