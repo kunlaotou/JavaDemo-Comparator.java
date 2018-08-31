@@ -1,0 +1,107 @@
+import java.util.*;
+
+/**
+ * @Author: WenhuaTang
+ * @Description:  用于临时测试小Demo
+ * @Date:Created in 10:08 2017/10/15
+ * @Remarks:
+ */
+public class test {
+
+    public static void bubble(int [] array){
+        if(array.length == 0){return;}
+        for(int i = 0; i < array.length; i++){
+            for(int j = array.length - 1; j > 0; j--){
+                if(array[j - 1] > array[j] ){
+                    int temp = array[j - 1];
+                    array[j - 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    }
+    public static void SimpleSelect(int [] array){
+        if(array.length == 0){return;}
+        for(int i = 0; i < array.length - 1; i++){
+            int min = i;
+            for(int j = i + 1; j < array.length; j++){
+                if(array[j] < array[min]){
+                    min = j;
+                }
+            }
+            if(min != i){
+                int temp = array[i];
+                array[i] = array[min];
+                array[min] = temp;
+            }
+        }
+    }
+    private static void QuickSort(int [] array, int low, int high){
+        if(array == null || array.length == 0){
+            return;
+        }
+        if(low > high){
+            return;
+        }
+        //找到基准pivot
+        int mid = low + (high - low) / 2;
+        int pivot = array[mid];
+
+        // make left < pivot and right > pivot
+        int i = low, j = high;
+        while(i <= j){
+            //Check until all values on left side array are lower than pivot
+            while (array[i] < pivot) {
+                i++;
+            }
+            //Check until all values on left side array are greater than pivot
+            while(array[j] > pivot){
+                j--;
+            }
+            //Now compare values from both side of lists to see if they need swapping
+            //After swapping move the iterator on both lists
+            if (i <= j)
+            {
+                swap (array, i, j);
+                i++;
+                j--;
+            }
+            //Do same operation as above recursively to sort two sub arrays
+            if (low < j){
+                QuickSort(array, low, j);
+            }
+            if (high > i){
+                QuickSort(array, i, high);
+            }
+        }
+    }
+    private static void swap(int[] array, int x, int y) {
+        int temp = array[x];
+        array[x] = array[y];
+        array[y] = temp;
+    }
+
+    public static void InsertionSort(int array[]) {
+        if(array == null || array.length == 0){return;}
+        for(int i = 1; i < array.length; i++){
+            for(int j = i; j > 0; j--){
+                if(array[j] < array[j -1]){
+                    int temp = array[j -1];
+                    array[j - 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    }
+
+
+    public static void main(String[] args) {
+
+        int[] array = new int[]{5,8,34,2,6,85,4};
+//        test.bubble(array);
+//        test.SimpleSelect(array);
+//        test.QuickSort(array, 0 , array.length - 1);
+        test.InsertionSort(array);
+        System.out.println(Arrays.toString(array));
+    }
+}
