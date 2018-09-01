@@ -1,0 +1,9 @@
+
+
+
+int nums = 6577；
+int sum = 0;
+while(nums > 0){
+  sum += sum % 10;
+  sum /= sum;
+}
