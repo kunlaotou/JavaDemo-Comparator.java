@@ -1,0 +1,48 @@
+题目描述
+定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+
+
+import java.util.Stack;
+
+public class Solution {
+    
+    Stack<Integer> stack = new Stack<Integer>();          
+    Stack<Integer> minstack = new Stack<Integer>();      
+    
+    public void push(int node) {
+        stack.push(node);
+        if(!minstack.isEmpty()){
+            if(node < minstack.peek()){
+                minstack.push(node);
+            }else{
+                minstack.push(minstack.peek());
+            }
+        }else{
+            minstack.push(node);
+        }
+    }
+    
+    public void pop() {
+        if(!stack.isEmpty()){
+            stack.pop();
+        }   
+        if(!minstack.isEmpty()){
+            minstack.pop();
+        }
+    }
+    
+    public int top() {
+        return stack.peek();
+    }
+    
+    public int min() {
+        return minstack.peek();
+    }
+}
+
+
+解题思路：
+先把如何使用辅助栈来实现数据的入栈出栈过程画出来，搞清楚；
+
+比如   
+  操作    数据栈情况      辅助栈情况     最小值
