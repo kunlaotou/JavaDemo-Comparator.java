@@ -1,0 +1,59 @@
+
+题目描述
+输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 
+              则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.
+
+
+
+
+
+import java.util.*;
+
+/**
+ * @Author: WenhuaTang
+ * @Description:  用于临时测试小Demo
+ * @Date:Created in 10:08 2017/10/15
+ * @Remarks:
+ */
+public class test {
+    public static void main(String[] args){
+        int[][] matrix = {{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15}};
+        printMatrix(matrix);
+    }
+
+    public static ArrayList<Integer> printMatrix(int[][] matrix) {
+        if(matrix == null || matrix.length  <= 0){
+            return new ArrayList<Integer>();
+        }
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        int start = 0;
+        while(ans.size() < rows * cols){
+            int endX = rows - 1 - start;
+            int endY = cols - 1 - start;
+            for(int i = 0; i <= endY; i++){
+                ans.add(matrix[start][i]);
+            }
+            if(start < endX){
+                for(int i = start + 1; i <= endX; i++){
+                    ans.add(matrix[i][endY]);
+                }
+            }
+            if(start < endY && start < endX){
+                for(int i = endY - 1; i >= start; i--){
+                    ans.add(matrix[endX][i]);
+                }
+            }
+            if(start < endY && start + 1 < endX){
+                for(int i = endX-1; i >= start+1; i -- ){
+                    ans.add(matrix[i][start]);
+                }
+            }
+            start++;
+        }
+        System.out.println(ans);
+
+        return new ArrayList<Integer>();
+    }
+}
