@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.*;
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList();
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        if(root == null){
+            return ans;
+        }
+        TreeNode p = root;
+        while(p != null){
+            ans.add(p.val);
+            
+            if(p.left != null){
+                queue.offer(p.left);
+            }
+            if(p.right != null){
+                queue.offer(p.right);
+            }
+            p = queue.poll();
+        }
+        return ans;
+        
+    }
+}
+解题思路： 借助队列层序二叉树
+为什么当时没写出来？要把节点的引用存进队里面，而不是节点的值，这样出队的时候就能拿到该节点，然后就可以访问该节点
