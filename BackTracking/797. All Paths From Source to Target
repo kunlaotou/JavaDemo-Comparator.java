@@ -1,0 +1,33 @@
+public class YQ {
+    public static List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        path.add(0);
+        dfs(graph, 0, path, ans);
+        System.out.println(ans);
+        return ans;
+    }
+    private static void dfs(int[][] graph, int node, List<Integer> path, List<List<Integer>> ans) {
+        if(node == graph.length - 1){
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+        for(int i = 0; i < graph[node].length; i++){
+            path.add(graph[node][i]);
+            dfs(graph, graph[node][i], path, ans);
+            path.remove(path.size() - 1);
+        }
+    }
+    public static void main(String[] args) {
+        int array[][] = new int[][]{{0,0,1,1},{1,0,1,0},{1,1,0,0}};
+        int array1[][] = new int[][]{{0}};
+        int array3[][] = new int[][]{{1, 2},{3},{3},{}};
+        YQ.allPathsSourceTarget(array3);
+    }
+}
+
+
+DFS三要素：
+1.dfs()参数，主要就是 原始总列表， 当前节点， 路径/一个结果   总结果
+2 把其中结果加到最终结果ans.add(new ArrayList<>(path));
+3.恢复现场 remove
